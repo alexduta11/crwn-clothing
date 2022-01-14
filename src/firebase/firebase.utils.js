@@ -8,9 +8,35 @@ const config = {
   projectId: "crwn-db-d5988",
   storageBucket: "crwn-db-d5988.appspot.com",
   messagingSenderId: "972015114189",
-  appId: "1:972015114189:web:d51bafa8106a1cdf751684",
-  measurementId: "G-QHHE0R2S2D"
+  appId: "1:972015114189:web:c540bdace6d5039d751684",
+  measurementId: "G-YX7E42TTPB"
 };
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if(!userAuth) return; 
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  const snapShot = await userRef.get();
+
+  if(!snapShot.exists){
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      })
+    } catch (error) {
+      console.log('error creating user', error.message)
+    }
+  }
+
+  return userRef;
+}
 
 firebase.initializeApp(config);
 
