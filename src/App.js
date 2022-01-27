@@ -12,7 +12,7 @@ import CheckoutPage from './pages/checkout/checkout.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
-import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
+// import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
 
 import { selectCurrentUser } from './redux/user/user.selector';
 
